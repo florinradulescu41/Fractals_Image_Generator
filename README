@@ -1,8 +1,3 @@
-// Readme TEMA1 APD 2020
-// 333CC Radulescu Florin
-
-Continut arhiva: tema1_par.c, Makefile, README
-
 Fisierul tema1_par.c contine varianta paralelizata a calculului multimilor
 Mandelbrot si Julia si a afisarii lor sub forma de imagini greyscale.
 
