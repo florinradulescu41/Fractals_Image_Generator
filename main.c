@@ -1,6 +1,5 @@
 /*
- * APD - Tema 1
- * Octombrie 2020
+ * October 2020
  */
 
 #include <stdio.h>
