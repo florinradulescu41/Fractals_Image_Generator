@@ -1,7 +1,7 @@
 # Fractals
 Parallel graphical fractal generation
 
-The file tema1_par.c contains the parallel version of the set calculation
+The file main.c contains the parallel version of the set calculation
 Mandelbrot and Julia and their display in the form of greyscale images.
 
 Since the sequential algorithm was used as the skeleton in this README
