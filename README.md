@@ -1,46 +1,46 @@
 # Fractals
 Parallel graphical fractal generation
 
-Fisierul tema1_par.c contine varianta paralelizata a calculului multimilor
-Mandelbrot si Julia si a afisarii lor sub forma de imagini greyscale.
+The file tema1_par.c contains the parallel version of the set calculation
+Mandelbrot and Julia and their display in the form of greyscale images.
 
-Intrucat algoritmul secvential a fost folosit drept schelet, in acest README
-va fi vorba doar despre logica paralelizarii acestuia folosind Pthreads.
+Since the sequential algorithm was used as the skeleton in this README
+it will only be about the logic of parallelizing it using Pthreads.
 
-In cadrul functiei main(), dupa operatiile de citire a inputului si alocarea
-spatiului necesar pentru matricile rezultatelor, se creeaza, printr-o bucla
-de tip for(), un numar de threaduri egal cu P (primit ca parametru la rulare).
+In the main () function, after the input reading and allocation operations
+the space required for the result matrices is created by a loop
+for (), a number of threads equal to P (received as a parameter at run).
 
-Fiecare dintre aceste threaduri se va ocupa de calculul unei zone specifce a
-matricelor rezultat, astfel incat nu este necesara iterarea prin intregul
-spatiu de valori pe un singur fir de executie. Logica impartirii acestor zone
-este urmatoarea: Fiecare thread calculeaza, pentru matricea cu parametrii
-width si height, o portiune a inaltimii in care va calcula valorile complexe.
+Each of these threads will deal with the calculation of a specific area
+resulting matrices, so that iteration through the integer is not required
+value space on a single thread. The logic of dividing these areas
+is as follows: Each thread calculates for the parameter matrix
+width and height, a portion of the height in which it will calculate complex values.
 
-Start-ul, in fiecare thread, este reprezentat de id-ul theardului ori lungimea
-portiunii de inaltime a unui thread. Aceasta lungime de portiune este calculata
-drept inaltimea totala (height) impartita la numarul de thearduri (P). Astfel,
-ne asiguram ca fiecare thread va avea o portiune egala (sau cat mai egala) pe
-care sa lucreze, maximizand eficienta si scalabilitatea programului. Endul unui
-theard (ultima linie din inaltime procesata) este inaintea startului threadului
-urmator.
+The start, in each thread, is represented by the thread id or length
+the height portion of a thread. This portion length is calculated
+as the total height divided by the number of thears (P). So,
+we make sure that each thread will have an equal (or as equal) portion as possible
+to work, maximizing the efficiency and scalability of the program. The end of a
+theard (last line of processed height) is before the start of the thread
+following.
 
-Calculele parametrilor se realizeaza in cadrul celor doua bucle for() preluate
-din varianta secventiala a algoritmului, cu precizarea ca in forul destinat
-iterarii pe spatiul de inaltime, fiecare thread va itera doar pe portiunea lui.
-Astfel, el va completa o portiune specifica din matricea rezultat.
+The parameter calculations are performed within the two for () loops taken over
+from the sequential version of the algorithm, specifying that in the intended forum
+iterations on the height space, each thread will only iterate on its portion.
+Thus, it will complete a specific portion of the resulting matrix.
 
-La finalul acestor calcule este pusa o bariera de tipul pthread_barrier_wait(),
-prin care se asigura faptul ca matricea rezultat este completa inaintea calcu-
-lului coordonatelor ecran. Transformarea in coordonate ecran este, de asemena,
-paralelizata, dar intrucat conversia reprezinta o operatie de mirror pe axa OX,
-este necesara iterarea doar pe jumatate din spatiul inaltimii. Deci, ultimul
-for() va functiona pe jumatate din intervalele de start si end initiale, adica
-pe start/2 si end/2. Aceleeasi logica de operatii de aplica atat asupra calcu-
-lului multimii Julia cat si a calculului multimii Mandelbrot.
+At the end of these calculations a barrier of type pthread_barrier_wait () is placed,
+which ensures that the resulting matrix is ​​complete before calculating
+screen coordinates. Transforming into screen coordinates is also
+parallelized, but since the conversion is a mirror operation on the OX axis,
+iteration is required for only half of the height space. So, the last one
+for () will work on half of the initial start and end intervals, ie
+on start / 2 and end / 2. The same logic of operations applies to both
+of the Julia set as well as the calculation of the Mandelbrot set.
 
-Dupa incheierea trasformarii coordonatelor Mandelbrot, se iese din theraduri si
-se revine in main(), unde are loc procesul de scriere in fisere a rezultatelor.
+After completing the transformation of the Mandelbrot coordinates, it exits the therads and
+it returns to main (), where the process of writing the results in files takes place.
 
-Timp alocat: In jur de 4-5 ore paralelizare si teste + 1 ora comenatrii/README.
-Multumesc pentru timpul aocrdat parcurgerii acestui README.
+Allocated time: Around 4-5 hours of parallelization and tests + 1 hour of command / README.
+Thank you for taking the time to complete this README.
