@@ -41,7 +41,7 @@ void get_args(int argc, char **argv)
 {
 	if (argc < 6) {
 		printf("Numar insuficient de parametri:\n\t"
-				"./tema1 fisier_intrare_julia fisier_iesire_julia "
+				"fisier_intrare_julia fisier_iesire_julia "
 				"fisier_intrare_mandelbrot fisier_iesire_mandelbrot\n");
 		exit(1);
 	}
